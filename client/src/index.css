@@ -1,0 +1,93 @@
+/* ===== EDGE Global Styles ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E2C27D;
+  --black: #0A0A0A;
+  --dark: #111111;
+  --dark2: #1A1A1A;
+  --dark3: #222222;
+  --mid: #333333;
+  --light: #f5f5f5;
+  --white: #ffffff;
+  --text-muted: #888888;
+  --red: #E53935;
+  --green: #43A047;
+  --radius: 8px;
+  --radius-lg: 16px;
+  --transition: all 0.2s ease;
+  --shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--black);
+  color: var(--light);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app { display: flex; flex-direction: column; min-height: 100vh; }
+.main-content { flex: 1; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 24px; border-radius: var(--radius); font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: var(--transition); letter-spacing: 0.5px; text-decoration: none; }
+.btn-primary { background: var(--gold); color: var(--black); }
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+.btn-outline:hover { background: var(--gold); color: var(--black); }
+.btn-dark { background: var(--dark3); color: var(--light); }
+.btn-dark:hover { background: var(--mid); }
+.btn-danger { background: var(--red); color: white; }
+.btn-lg { padding: 16px 32px; font-size: 16px; }
+.btn-sm { padding: 8px 16px; font-size: 13px; }
+.btn-full { width: 100%; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* Cards */
+.card { background: var(--dark2); border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition); }
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+
+/* Form */
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 13px; font-weight: 500; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 16px; background: var(--dark3); border: 1px solid var(--mid); border-radius: var(--radius); color: var(--light); font-size: 15px; font-family: inherit; transition: var(--transition); }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--gold); background: var(--dark2); }
+.form-group select option { background: var(--dark2); }
+
+/* Badges */
+.badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.badge-pending { background: rgba(255,193,7,0.15); color: #FFC107; }
+.badge-confirmed { background: rgba(33,150,243,0.15); color: #2196F3; }
+.badge-shipped { background: rgba(156,39,176,0.15); color: #9C27B0; }
+.badge-delivered { background: rgba(67,160,71,0.15); color: #43A047; }
+.badge-canceled { background: rgba(229,57,53,0.15); color: #E53935; }
+
+/* Loader */
+.loader { display: flex; align-items: center; justify-content: center; padding: 60px; }
+.spinner { width: 40px; height: 40px; border: 3px solid var(--mid); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Misc */
+.section-title { font-size: 28px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+.section-title span { color: var(--gold); }
+.text-muted { color: var(--text-muted); }
+.divider { height: 1px; background: var(--dark3); margin: 24px 0; }
+.gold { color: var(--gold); }
+.price { font-size: 20px; font-weight: 700; color: var(--gold); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--mid); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container { padding: 0 16px; }
+  .section-title { font-size: 22px; }
+}

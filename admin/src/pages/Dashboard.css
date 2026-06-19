@@ -1,0 +1,43 @@
+.page-header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+.page-header h1 { font-size: 26px; font-weight: 800; color: #fff; }
+.live-badge { background: rgba(67,160,71,.15); color: #43A047; border: 1px solid rgba(67,160,71,.3); padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+
+.revenue-banner {
+  background: linear-gradient(135deg, #1a1408, #111);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.revenue-label { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 8px; }
+.revenue-amount { font-size: 36px; font-weight: 900; color: #C9A84C; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; margin-bottom: 32px; }
+.stat-card {
+  background: #111; border: 1px solid #1A1A1A; border-radius: 12px; padding: 20px;
+  transition: border-color 0.2s;
+}
+.stat-card:hover { border-color: var(--accent, #C9A84C); }
+.stat-icon { font-size: 22px; margin-bottom: 12px; }
+.stat-value { font-size: 28px; font-weight: 800; color: var(--accent, #fff); margin-bottom: 4px; }
+.stat-label { font-size: 12px; color: #555; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.section-header h2 { font-size: 17px; font-weight: 700; color: #fff; }
+
+.orders-table-wrap { overflow-x: auto; }
+.orders-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.orders-table th { text-align: left; padding: 10px 14px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: #555; border-bottom: 1px solid #1A1A1A; }
+.orders-table td { padding: 14px; border-bottom: 1px solid #161616; color: #ccc; }
+.orders-table td strong { display: block; color: #f5f5f5; font-size: 14px; }
+.orders-table td small { font-size: 12px; color: #555; }
+.orders-table tr:last-child td { border-bottom: none; }
+.orders-table tr:hover td { background: #161616; }
+.gold { color: #C9A84C !important; font-weight: 600; }
+.empty-row { text-align: center; color: #444; padding: 40px !important; }
+
+@media (max-width: 600px) { .revenue-amount { font-size: 26px; } .stats-grid { grid-template-columns: repeat(2, 1fr); } }

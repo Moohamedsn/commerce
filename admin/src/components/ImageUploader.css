@@ -1,0 +1,128 @@
+/* ── Drop Zone ── */
+.img-dropzone {
+  border: 2px dashed #2a2a2a;
+  border-radius: 14px;
+  padding: 28px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  background: #0d0d0d;
+  user-select: none;
+}
+.img-dropzone:hover { border-color: #C9A84C; background: rgba(201,168,76,0.04); }
+.img-dropzone.dragging { border-color: #C9A84C; background: rgba(201,168,76,0.08); transform: scale(1.01); }
+.img-dropzone.uploading { pointer-events: none; opacity: 0.7; }
+
+.dropzone-content { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+
+.dropzone-icon { font-size: 36px; line-height: 1; transition: transform 0.2s; }
+.dropzone-icon.bounce { animation: bounce 0.4s ease infinite alternate; }
+@keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-6px); } }
+
+.dropzone-title { font-size: 15px; font-weight: 600; color: #ccc; margin: 0; }
+.dropzone-sub   { font-size: 12px; color: #555; margin: 0; }
+.dropzone-link  { color: #C9A84C; text-decoration: underline; cursor: pointer; }
+
+/* ── Images Grid ── */
+.img-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+/* ── Tile ── */
+.img-tile {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #111;
+  border: 1px solid #1e1e1e;
+  cursor: grab;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.img-tile:hover { transform: scale(1.03); border-color: #C9A84C55; }
+.img-tile:active { cursor: grabbing; }
+
+.img-tile img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overlay on hover */
+.img-tile-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.55);
+  opacity: 0;
+  transition: opacity 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.img-tile:hover .img-tile-overlay { opacity: 1; }
+
+.img-main-badge {
+  position: absolute; top: 6px; left: 6px;
+  background: #C9A84C; color: #000;
+  font-size: 9px; font-weight: 800;
+  letter-spacing: 0.5px; text-transform: uppercase;
+  padding: 2px 6px; border-radius: 4px;
+}
+
+.img-tile-actions { display: flex; gap: 6px; }
+.img-action-btn {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff; border-radius: 6px;
+  width: 30px; height: 30px;
+  font-size: 13px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.img-action-btn:hover { background: rgba(255,255,255,0.25); }
+.img-action-btn.danger:hover { background: rgba(229,57,53,0.6); border-color: #E53935; }
+
+/* Drag handle */
+.img-drag-handle {
+  position: absolute; bottom: 4px; right: 5px;
+  font-size: 14px; color: rgba(255,255,255,0.3);
+  pointer-events: none; line-height: 1;
+}
+
+/* ── Upload progress tile ── */
+.uploading-tile { cursor: default; }
+.img-progress-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px;
+}
+.img-progress-bar {
+  height: 3px; background: #C9A84C;
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.15s ease;
+  position: absolute; bottom: 0; left: 0;
+}
+.img-progress-pct {
+  font-size: 18px; font-weight: 700;
+  color: #fff;
+}
+
+/* ── Add more tile ── */
+.img-add-tile {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  border: 2px dashed #2a2a2a;
+  cursor: pointer;
+  gap: 4px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.img-add-tile:hover { border-color: #C9A84C; background: rgba(201,168,76,0.06); transform: none; }
+.img-add-icon  { font-size: 24px; color: #444; line-height: 1; }
+.img-add-label { font-size: 11px; color: #444; }

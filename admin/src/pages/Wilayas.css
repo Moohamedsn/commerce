@@ -1,0 +1,38 @@
+.bulk-set { margin-bottom: 20px; }
+.bulk-set h3 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 16px; }
+.bulk-set label { display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: #555; margin-bottom: 6px; }
+.bulk-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.wilaya-search { margin-bottom: 16px; }
+.search-input { width: 100%; max-width: 360px; padding: 10px 16px; background: #111; border: 1px solid #333; border-radius: 8px; color: #f5f5f5; font-size: 14px; font-family: inherit; transition: border-color 0.2s; }
+.search-input:focus { outline: none; border-color: #C9A84C; }
+
+.wilayas-table-wrap { padding: 0; overflow-x: auto; }
+.wilayas-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.wilayas-table th { padding: 12px 16px; text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #555; border-bottom: 1px solid #1A1A1A; background: #0D0D0D; }
+.wilayas-table td { padding: 10px 16px; border-bottom: 1px solid #161616; }
+.wilayas-table tr:last-child td { border-bottom: none; }
+.wilayas-table tr:hover td { background: #161616; }
+.changed-row td { background: rgba(201,168,76,0.04) !important; }
+
+.code-cell { color: #555; font-size: 13px; font-weight: 600; min-width: 36px; }
+.wilayas-table td strong { display: block; font-size: 14px; color: #f5f5f5; }
+.wilayas-table td small { font-size: 12px; color: #555; }
+
+.price-input {
+  width: 120px;
+  padding: 7px 10px;
+  background: #1A1A1A;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #f5f5f5;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+.price-input:focus { outline: none; border-color: #C9A84C; }
+
+.changed-badge { color: #C9A84C; font-size: 18px; }
+.save-success { color: #43A047; font-size: 14px; font-weight: 600; }
+
+@media (max-width: 600px) { .bulk-inputs { grid-template-columns: 1fr; } .price-input { width: 90px; } }
