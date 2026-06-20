@@ -3,9 +3,9 @@ import './Footer.css';
 
 // ⚡ Replace these with your real contact info
 const CONTACT = {
-  phone: '+213 XXX XXX XXX',
-  whatsapp: '+213XXXXXXXXX',
-  instagram: 'edge.dz',
+  phone: '+213 772 980 460',
+  whatsapp: '+213772980460',
+  instagram: 'edge.__wear',
   tiktok: '@edge.dz',
 };
 
