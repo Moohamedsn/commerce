@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { getOrders, updateOrderStatus } from '../api';
+import { getOrders, updateOrderStatus, deleteOrder } from '../api';
 import './Orders.css';
 
 const STATUSES = ['all', 'pending', 'confirmed', 'shipped', 'delivered', 'canceled'];
@@ -183,6 +183,15 @@ export default function Orders() {
       setUpdating(null);
     }
   };
+  const handleDelete = async (orderId) => {
+  if (!window.confirm('Are you sure you want to delete this order? This cannot be undone.')) return;
+  try {
+    await deleteOrder(orderId);
+    setOrders(prev => prev.filter(o => o.id !== orderId));
+  } catch (err) {
+    alert('Failed to delete order');
+  }
+};
 
   return (
     <div className="orders-page">
@@ -299,6 +308,13 @@ export default function Orders() {
                       onClick={() => printOrder(order)}
                     >
                       🖨️ Print Order
+                    </button>
+                    <button
+                      className="print-btn"
+                      title="Delete order"
+                      onClick={e => { e.stopPropagation(); handleDelete(order.id); }}
+                    >
+                     🗑️
                     </button>
                   </div>
                 </div>

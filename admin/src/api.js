@@ -37,7 +37,7 @@ export const deleteProduct = (id) => API.delete(`/products/${id}`);
 export const getOrders = (params) => API.get('/orders', { params });
 export const getOrderStats = () => API.get('/orders/stats');
 export const updateOrderStatus = (id, status) => API.patch(`/orders/${id}/status`, { status });
-
+export const deleteOrder = (id) => API.delete(`/orders/${id}`);
 // Wilayas
 export const getWilayas = () => API.get('/wilayas');
 export const updateWilaya = (id, data) => API.put(`/wilayas/${id}`, data);

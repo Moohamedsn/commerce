@@ -120,5 +120,19 @@ router.patch('/:id/status', auth, async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+// DELETE /api/orders/:id - admin only
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    const order = await Order.findByPk(req.params.id);
+    if (!order) return res.status(404).json({ message: 'Order not found' });
+
+    await OrderItem.destroy({ where: { orderId: order.id } });
+    await order.destroy();
+
+    res.json({ message: 'Order deleted' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
 module.exports = router;
