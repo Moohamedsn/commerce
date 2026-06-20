@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api',
+  baseURL: process.env.REACT_APP_API_URL || 'https://edge-prnl.onrender.com',
 });
 
 export const getProducts = () => API.get('/products');
@@ -15,6 +15,6 @@ export default API;
 export const resolveImageUrl = (src) => {
   if (!src) return '';
   if (src.startsWith('http')) return src;
-  const base = process.env.REACT_APP_API_URL?.replace('/api', '') || 'http://localhost:5000';
+  const base = process.env.REACT_APP_API_URL?.replace('/api', '') || 'https://edge-prnl.onrender.com';
   return base + src;
 };

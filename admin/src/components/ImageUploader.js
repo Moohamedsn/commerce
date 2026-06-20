@@ -15,7 +15,7 @@ export default function ImageUploader({ images = [], onChange }) {
   const [previews, setPreviews]   = useState([]);   // { tmpId, objectUrl }
   const inputRef = useRef();
 
-  const BASE = process.env.REACT_APP_API_URL?.replace('/api', '') || 'http://localhost:5000';
+  const BASE = process.env.REACT_APP_API_URL?.replace('/api', '') || 'https://edge-prnl.onrender.com';
 
   const resolveUrl = (src) => {
     if (!src) return '';
