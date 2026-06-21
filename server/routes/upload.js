@@ -1,5 +1,6 @@
 const express = require('express');
 const multer  = require('multer');
+const sharp   = require('sharp');
 const path    = require('path');
 const fs      = require('fs');
 const auth    = require('../middleware/auth');
@@ -10,17 +11,12 @@ const router = express.Router();
 const UPLOAD_DIR = path.join(__dirname, '..', 'uploads');
 if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 
-const storage = multer.diskStorage({
-  destination: (_req, _file, cb) => cb(null, UPLOAD_DIR),
-  filename: (_req, file, cb) => {
-    const unique = `${Date.now()}-${Math.round(Math.random() * 1e6)}`;
-    cb(null, unique + path.extname(file.originalname));
-  },
-});
+// Use memory storage so we can process the image with sharp before saving
+const storage = multer.memoryStorage();
 
 const upload = multer({
   storage,
-  limits: { fileSize: 10 * 1024 * 1024 }, // 10 MB
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10 MB (pre-compression limit)
   fileFilter: (_req, file, cb) => {
     if (file.mimetype.startsWith('image/')) cb(null, true);
     else cb(new Error('Only image files are allowed'));
@@ -28,12 +24,28 @@ const upload = multer({
 });
 
 // POST /api/upload  (admin only, up to 10 files at once)
-router.post('/', auth, upload.array('images', 10), (req, res) => {
+// Resizes to max 1200px wide and compresses to JPEG ~80% quality
+router.post('/', auth, upload.array('images', 10), async (req, res) => {
   if (!req.files || req.files.length === 0)
     return res.status(400).json({ message: 'No files uploaded' });
 
-  const urls = req.files.map(f => `/uploads/${f.filename}`);
-  res.json({ urls });
+  try {
+    const urls = await Promise.all(req.files.map(async (file) => {
+      const filename = `${Date.now()}-${Math.round(Math.random() * 1e6)}.jpg`;
+      const outputPath = path.join(UPLOAD_DIR, filename);
+
+      await sharp(file.buffer)
+        .resize({ width: 1200, withoutEnlargement: true })
+        .jpeg({ quality: 80, mozjpeg: true })
+        .toFile(outputPath);
+
+      return `/uploads/${filename}`;
+    }));
+
+    res.json({ urls });
+  } catch (err) {
+    res.status(500).json({ message: 'Image processing failed: ' + err.message });
+  }
 });
 
 // DELETE /api/upload  — remove a specific file
